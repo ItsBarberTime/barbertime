@@ -1,50 +1,686 @@
-```html
-<header class="topbar">
-  <a class="brand" href="#">Its Barber Time</a>
 
-  <div class="header-right">
-    <!-- Download Buttons -->
-    <div class="download-buttons">
-      <a
-        class="nav-cta apple-btn"
-        href="https://apps.apple.com/app/its-barbertime-booking/id6795333085"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Download for Apple
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Download the BarberTime app now and experience the convenience of booking your haircut appointment online."
+    />
+
+    <title>Its Barber Time | Download Our Online Booking App</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Your CSS -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      /* =========================================
+         HEADER
+      ========================================= */
+
+      .topbar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 16px 5%;
+        width: 100%;
+        box-sizing: border-box;
+        z-index: 1000;
+      }
+
+      /* Brand */
+
+      .brand {
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      /* Right side */
+
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* =========================================
+         DOWNLOAD BUTTONS
+      ========================================= */
+
+      .download-buttons {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .nav-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 10px 16px;
+
+        border-radius: 8px;
+        text-decoration: none;
+
+        font-weight: 700;
+        font-size: 14px;
+
+        white-space: nowrap;
+
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s ease;
+      }
+
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        opacity: 0.9;
+      }
+
+      .apple-btn {
+        background: #000;
+        color: #fff;
+      }
+
+      .android-btn {
+        background: #34a853;
+        color: #fff;
+      }
+
+      /* =========================================
+         HAMBURGER BUTTON
+      ========================================= */
+
+      .menu-toggle {
+        width: 44px;
+        height: 44px;
+
+        padding: 8px;
+        border: none;
+        background: transparent;
+
+        cursor: pointer;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        gap: 5px;
+
+        border-radius: 8px;
+      }
+
+      .menu-toggle:hover {
+        background: rgba(0, 0, 0, 0.06);
+      }
+
+      .menu-toggle span {
+        display: block;
+
+        width: 25px;
+        height: 3px;
+
+        border-radius: 3px;
+
+        background: currentColor;
+
+        transition:
+          transform 0.25s ease,
+          opacity 0.25s ease;
+      }
+
+      /* =========================================
+         DROPDOWN MENU
+      ========================================= */
+
+      .dropdown-menu {
+        position: absolute;
+
+        top: calc(100% + 8px);
+        right: 5%;
+
+        width: 230px;
+
+        display: flex;
+        flex-direction: column;
+
+        background: #fff;
+
+        border-radius: 12px;
+
+        padding: 8px;
+
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform: translateY(-8px);
+
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease,
+          visibility 0.2s ease;
+      }
+
+      .dropdown-menu a {
+        display: block;
+
+        padding: 12px 14px;
+
+        color: #111;
+
+        text-decoration: none;
+
+        font-weight: 600;
+
+        border-radius: 8px;
+      }
+
+      .dropdown-menu a:hover {
+        background: #f3f3f3;
+      }
+
+      /* Open menu */
+
+      .dropdown-menu.active {
+        opacity: 1;
+        visibility: visible;
+
+        transform: translateY(0);
+      }
+
+      /* =========================================
+         HAMBURGER ANIMATION
+      ========================================= */
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+      }
+
+      /* =========================================
+         MOBILE
+      ========================================= */
+
+      @media (max-width: 700px) {
+        .topbar {
+          padding: 12px 4%;
+          gap: 10px;
+        }
+
+        .brand {
+          font-size: 16px;
+        }
+
+        .download-buttons {
+          gap: 6px;
+        }
+
+        .nav-cta {
+          padding: 8px 10px;
+          font-size: 11px;
+        }
+
+        .menu-toggle {
+          width: 40px;
+          height: 40px;
+        }
+
+        .dropdown-menu {
+          right: 4%;
+          width: 220px;
+        }
+      }
+
+      /* =========================================
+         SMALL PHONES
+      ========================================= */
+
+      @media (max-width: 480px) {
+        .topbar {
+          padding: 10px 3%;
+        }
+
+        .brand {
+          font-size: 14px;
+        }
+
+        .download-buttons {
+          gap: 4px;
+        }
+
+        .nav-cta {
+          padding: 7px 8px;
+          font-size: 10px;
+        }
+
+        .menu-toggle {
+          width: 38px;
+          height: 38px;
+        }
+
+        .menu-toggle span {
+          width: 22px;
+        }
+
+        .dropdown-menu {
+          right: 3%;
+          width: 220px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
+    <header class="topbar">
+
+      <!-- Brand -->
+      <a class="brand" href="#">
+        Its Barber Time
       </a>
 
-      <a
-        class="nav-cta android-btn"
-        href="https://play.google.com/store/apps/details?id=com.itsbarbertime.booking&hl=en_US"
-        target="_blank"
-        rel="noreferrer"
+      <!-- Right Side -->
+      <div class="header-right">
+
+        <!-- Download Buttons -->
+        <div class="download-buttons">
+
+          <!-- Apple -->
+          <a
+            class="nav-cta apple-btn"
+            href="https://apps.apple.com/app/its-barbertime-booking/id6795333085"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Download for Apple
+          </a>
+
+          <!-- Android -->
+          <a
+            class="nav-cta android-btn"
+            href="https://play.google.com/store/apps/details?id=com.itsbarbertime.booking&hl=en_US"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Download for Android
+          </a>
+
+        </div>
+
+        <!-- Hamburger Button -->
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+      </div>
+
+      <!-- =========================================
+           DROPDOWN MENU
+      ========================================= -->
+
+      <nav
+        class="dropdown-menu"
+        id="dropdownMenu"
       >
-        Download for Android
-      </a>
-    </div>
+        <a href="#locations">
+          Locations
+        </a>
 
-    <!-- Hamburger Button -->
-    <button
-      class="menu-toggle"
-      id="menuToggle"
-      aria-label="Open menu"
-      aria-expanded="false"
-    >
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </div>
+        <a href="#contact">
+          Contact
+        </a>
 
-  <!-- Dropdown Menu -->
-  <nav class="dropdown-menu" id="dropdownMenu">
-    <a href="#locations">Locations</a>
-    <a href="#contact">Contact</a>
-    <a href="policy.html">Privacy Policy</a>
-    <a href="policy.html">Terms of Service</a>
-    <a href="delete-account.html">Account Deletion</a>
-    <a href="support.html">Support</a>
-  </nav>
-</header>
+        <a href="policy.html">
+          Privacy Policy
+        </a>
+
+        <a href="policy.html">
+          Terms of Service
+        </a>
+
+        <a href="delete-account.html">
+          Account Deletion
+        </a>
+
+        <a href="support.html">
+          Support
+        </a>
+      </nav>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
+
+    <main>
+
+      <!-- =========================================
+           HERO
+      ========================================= -->
+
+      <section class="hero">
+
+        <div class="hero-content">
+
+          <!-- Logo -->
+          <img
+            class="logo"
+            src="bbtapplogo.PNG"
+            alt="Its Barber Time logo"
+          />
+
+          <h1>
+            Book With Our App
+          </h1>
+
+          <p>
+            Download the BarberTime app to easily book appointments,
+            manage your bookings, and stay updated with the latest
+            offers and promotions at our barbershop. Experience
+            convenient scheduling and personalized grooming services
+            with the BarberTime booking app.
+          </p>
+
+
+          <!-- Stats -->
+
+          <div class="stats">
+
+            <div class="stat-card">
+
+              <strong>
+                2499+
+              </strong>
+
+              <span>
+                Cuts Delivered
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Download Buttons -->
+
+          <div class="buttons">
+
+            <!-- iPhone -->
+            <a
+              class="button"
+              href="https://apps.apple.com/app/its-barbertime-booking/id6795333085"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download for iPhone
+            </a>
+
+            <!-- Android -->
+            <a
+              class="button secondary"
+              href="https://play.google.com/store/apps/details?id=com.itsbarbertime.booking&hl=en_US"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download for Android
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- =========================================
+             GALLERY
+        ========================================= -->
+
+        <div
+          class="gallery"
+          aria-label="BarberTime gallery"
+        >
+
+          <img
+            src="IMG_4078.jpg"
+            alt="BarberTime service"
+          />
+
+          <img
+            src="IMG_4079 (1).jpg"
+            alt="BarberTime barbershop"
+          />
+
+          <img
+            src="IMG_4081.jpg"
+            alt="BarberTime grooming"
+          />
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           LOCATIONS
+      ========================================= -->
+
+      <section
+        class="locations"
+        id="locations"
+      >
+
+        <h2>
+          Our Locations
+        </h2>
+
+        <div class="location-grid">
+
+          <!-- Castor & Princeton -->
+
+          <article>
+
+            <h3>
+              Castor & Princeton
+            </h3>
+
+            <iframe
+              title="Map for Castor & Princeton"
+              src="https://www.google.com/maps?q=BarberTime%20Castor%20%26%20Princeton&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+
+          </article>
+
+
+          <!-- Frankford & Rhawn -->
+
+          <article>
+
+            <h3>
+              Frankford & Rhawn
+            </h3>
+
+            <iframe
+              title="Map for Frankford & Rhawn"
+              src="https://www.google.com/maps?q=BarberTime%20Frankford%20%26%20Rhawn&output=embed"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================================
+           CONTACT
+      ========================================= -->
+
+      <section
+        class="contact"
+        id="contact"
+      >
+
+        <h2>
+          Contact Us
+        </h2>
+
+        <p>
+          For any questions or inquiries, please fill in the form below.
+        </p>
+
+        <form>
+
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name"
+            required
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+          />
+
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            required
+          ></textarea>
+
+          <button type="submit">
+            Submit
+          </button>
+
+        </form>
+
+      </section>
+
+    </main>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="footer">
+
+      <p>
+        © 2026 Its Barber Time. Book your next cut with the app.
+      </p>
+
+    </footer>
+
+
+    <!-- =========================================
+         HAMBURGER MENU JAVASCRIPT
+    ========================================= -->
+
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const dropdownMenu = document.getElementById("dropdownMenu");
+
+      // Open / close menu
+      menuToggle.addEventListener("click", function () {
+
+        const isOpen =
+          dropdownMenu.classList.toggle("active");
+
+        menuToggle.classList.toggle("active");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          isOpen
+        );
+
+      });
+
+
+      // Close menu after clicking a link
+      dropdownMenu
+        .querySelectorAll("a")
+        .forEach(function (link) {
+
+          link.addEventListener("click", function () {
+
+            dropdownMenu.classList.remove("active");
+
+            menuToggle.classList.remove("active");
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          });
+
+        });
+
+
+      // Close menu when clicking outside
+      document.addEventListener("click", function (event) {
+
+        if (
+          !menuToggle.contains(event.target) &&
+          !dropdownMenu.contains(event.target)
+        ) {
+
+          dropdownMenu.classList.remove("active");
+
+          menuToggle.classList.remove("active");
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+          );
+
+        }
+
+      });
+    </script>
+
+  </body>
+</html>
 ```
