@@ -1,556 +1,359 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f0f12;
+  --panel: #17171d;
+  --text: #f5f5f7;
+  --muted: #b8b8c3;
+  --accent: #f1c40f;
+  --accent-2: #f39c12;
+  --border: rgba(255, 255, 255, 0.08);
+}
 
-<style>
+* {
+  box-sizing: border-box;
+}
 
-  /* =====================================================
-     HEADER
-  ===================================================== */
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, var(--bg), #1a1a20);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+/* ---------- Topbar ---------- */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0;
+}
+
+.brand {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.05rem;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-cta {
+  color: #111 !important;
+  text-decoration: none;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.nav-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(241, 196, 15, 0.22);
+}
+
+/* ---------- Dropdown menu ---------- */
+
+.menu {
+  position: relative;
+}
+
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.55rem 0.9rem;
+  cursor: pointer;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle[aria-expanded="true"] {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.menu-icon {
+  width: 14px;
+  height: 14px;
+  transition: transform 180ms ease;
+}
+
+.menu-toggle[aria-expanded="true"] .menu-icon {
+  transform: rotate(180deg);
+}
+
+.menu-panel {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 200px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.4rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 160ms ease, transform 160ms ease, visibility 160ms;
+  z-index: 20;
+}
+
+.menu-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menu-panel a {
+  display: block;
+  padding: 0.6rem 0.7rem;
+  border-radius: 8px;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.92rem;
+}
+
+.menu-panel a:hover,
+.menu-panel a:focus-visible {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+}
+
+/* ---------- Layout ---------- */
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+main {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1rem 0 4rem;
+}
+
+section {
+  background: rgba(23, 23, 29, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.logo {
+  width: 160px;
+  margin: 0 auto 1rem;
+  border-radius: 16px;
+}
+
+h1,
+h2,
+h3 {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+  line-height: 1.2;
+}
+
+.stats {
+  margin: 1.2rem 0;
+}
+
+.stat-card {
+  display: inline-block;
+  padding: 1rem 1.2rem;
+  background: rgba(241, 196, 15, 0.12);
+  border: 1px solid rgba(241, 196, 15, 0.3);
+  border-radius: 14px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.button {
+  display: inline-block;
+  padding: 0.9rem 1.2rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #111;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.button.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(241, 196, 15, 0.22);
+}
+
+.gallery {
+  display: grid;
+  gap: 1rem;
+}
+
+.gallery img {
+  border-radius: 16px;
+  height: 180px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+iframe {
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  min-height: 280px;
+}
+
+/* ---------- Form ---------- */
+
+form {
+  display: grid;
+  gap: 1rem;
+  max-width: 640px;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #111217;
+  color: var(--text);
+}
+
+input:focus-visible,
+textarea:focus-visible,
+button:focus-visible,
+.menu-toggle:focus-visible,
+.nav-cta:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+form button {
+  cursor: pointer;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #111;
+  font-weight: 700;
+  border: none;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(241, 196, 15, 0.22);
+}
+
+.footer {
+  text-align: center;
+  padding: 0 1rem 2rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 800px) {
+  .hero,
+  .location-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 1.25rem;
+  }
 
   .topbar {
-    position: relative !important;
-    width: 100% !important;
-    min-height: 80px;
-
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-
-    padding: 15px 4% !important;
-    box-sizing: border-box;
-
-    z-index: 9999 !important;
+    flex-wrap: wrap;
   }
 
-
-  /* =====================================================
-     CENTERED BRAND
-  ===================================================== */
-
-  .brand {
-    position: absolute !important;
-
-    left: 50% !important;
-    top: 50% !important;
-
-    transform: translate(-50%, -50%) !important;
-
-    margin: 0 !important;
-
-    text-decoration: none !important;
-    white-space: nowrap;
-
-    font-family: "Montserrat", sans-serif !important;
-    font-size: 22px !important;
-    font-weight: 700 !important;
-
-    z-index: 2;
+  .nav-right {
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
-
-  /* =====================================================
-     RIGHT SIDE
-  ===================================================== */
-
-  .header-right {
-    position: absolute !important;
-
-    right: 4% !important;
-    top: 50% !important;
-
-    transform: translateY(-50%) !important;
-
-    display: flex !important;
-    align-items: center !important;
-
-    gap: 14px !important;
-
-    z-index: 10 !important;
+  .nav-cta {
+    font-size: 0.82rem;
+    padding: 0.5rem 0.75rem;
   }
+}
 
-
-  /* =====================================================
-     DOWNLOAD BUTTONS
-  ===================================================== */
-
-  .header-download {
-    display: flex !important;
-    align-items: center !important;
-
-    gap: 12px !important;
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
   }
-
-
-  .header-download a {
-    display: inline-flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    min-height: 48px !important;
-
-    padding: 0 22px !important;
-
-    background: #ff8a3d !important;
-    color: #ffffff !important;
-
-    border-radius: 9px !important;
-
-    text-decoration: none !important;
-
-    font-family: "Montserrat", sans-serif !important;
-
-    font-size: 14px !important;
-    font-weight: 700 !important;
-
-    white-space: nowrap !important;
-
-    border: none !important;
-
-    box-sizing: border-box !important;
-
-    transition:
-      transform 0.2s ease,
-      background 0.2s ease !important;
-  }
-
-
-  .header-download a:hover {
-    background: #f57b2a !important;
-
-    transform: translateY(-2px) !important;
-  }
-
-
-  /* =====================================================
-     HAMBURGER
-  ===================================================== */
-
-  .hamburger {
-    width: 52px !important;
-    height: 52px !important;
-
-    display: flex !important;
-
-    flex-direction: column !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    gap: 6px !important;
-
-    padding: 0 !important;
-
-    border: 2px solid #ff8a3d !important;
-
-    border-radius: 9px !important;
-
-    background: #ffffff !important;
-
-    cursor: pointer !important;
-
-    position: relative !important;
-
-    z-index: 10001 !important;
-
-    box-sizing: border-box !important;
-  }
-
-
-  /* ORANGE THREE LINES */
-
-  .hamburger span {
-    display: block !important;
-
-    width: 29px !important;
-    height: 4px !important;
-
-    border-radius: 4px !important;
-
-    background: #ff8a3d !important;
-
-    opacity: 1 !important;
-
-    transition: all 0.25s ease !important;
-  }
-
-
-  .hamburger:hover {
-    background: #fff4ec !important;
-  }
-
-
-  /* =====================================================
-     HAMBURGER → X
-  ===================================================== */
-
-  .hamburger.open span:nth-child(1) {
-    transform: translateY(10px) rotate(45deg) !important;
-  }
-
-  .hamburger.open span:nth-child(2) {
-    opacity: 0 !important;
-  }
-
-  .hamburger.open span:nth-child(3) {
-    transform: translateY(-10px) rotate(-45deg) !important;
-  }
-
-
-  /* =====================================================
-     DROPDOWN MENU
-  ===================================================== */
-
-  .menu-dropdown {
-    position: absolute !important;
-
-    top: calc(100% + 10px) !important;
-
-    right: 4% !important;
-
-    width: 270px !important;
-
-    background: #ffffff !important;
-
-    border-radius: 12px !important;
-
-    padding: 10px !important;
-
-    box-sizing: border-box !important;
-
-    box-shadow:
-      0 15px 40px rgba(0, 0, 0, 0.20) !important;
-
-    display: flex !important;
-
-    flex-direction: column !important;
-
-    visibility: hidden !important;
-
-    opacity: 0 !important;
-
-    transform: translateY(-10px) !important;
-
-    transition:
-      opacity 0.2s ease,
-      transform 0.2s ease,
-      visibility 0.2s ease !important;
-
-    z-index: 10000 !important;
-  }
-
-
-  .menu-dropdown.show {
-    visibility: visible !important;
-
-    opacity: 1 !important;
-
-    transform: translateY(0) !important;
-  }
-
-
-  .menu-dropdown a {
-    display: block !important;
-
-    width: 100% !important;
-
-    padding: 14px 16px !important;
-
-    box-sizing: border-box !important;
-
-    color: #222222 !important;
-
-    background: transparent !important;
-
-    text-decoration: none !important;
-
-    font-family: "Montserrat", sans-serif !important;
-
-    font-size: 14px !important;
-
-    font-weight: 600 !important;
-
-    border-radius: 8px !important;
-
-    transition:
-      background 0.2s ease,
-      color 0.2s ease !important;
-  }
-
-
-  .menu-dropdown a:hover {
-    background: #ff8a3d !important;
-
-    color: #ffffff !important;
-  }
-
-
-  /* =====================================================
-     HERO BUTTONS
-  ===================================================== */
-
-  .buttons {
-    display: flex !important;
-
-    flex-wrap: wrap !important;
-
-    justify-content: center !important;
-
-    gap: 14px !important;
-
-    margin-top: 25px !important;
-  }
-
-
-  .buttons .button,
-  .buttons .button.secondary {
-    display: inline-flex !important;
-
-    align-items: center !important;
-    justify-content: center !important;
-
-    min-height: 52px !important;
-
-    padding: 0 25px !important;
-
-    background: #ff8a3d !important;
-
-    color: #ffffff !important;
-
-    border-radius: 9px !important;
-
-    text-decoration: none !important;
-
-    font-family: "Montserrat", sans-serif !important;
-
-    font-size: 14px !important;
-
-    font-weight: 700 !important;
-
-    border: none !important;
-
-    box-sizing: border-box !important;
-
-    transition:
-      transform 0.2s ease,
-      background 0.2s ease !important;
-  }
-
-
-  .buttons .button:hover,
-  .buttons .button.secondary:hover {
-    background: #f57b2a !important;
-
-    transform: translateY(-2px) !important;
-  }
-
-
-  /* =====================================================
-     GALLERY
-  ===================================================== */
-
-  .gallery {
-    display: grid !important;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 15px;
-  }
-
-
-  .gallery img {
-    width: 100% !important;
-
-    height: auto !important;
-
-    display: block !important;
-
-    object-fit: cover;
-
-    border-radius: 12px;
-  }
-
-
-  /* =====================================================
-     LOCATIONS
-  ===================================================== */
-
-  .locations {
-    width: 100% !important;
-
-    box-sizing: border-box !important;
-
-    display: block !important;
-
-    visibility: visible !important;
-
-    opacity: 1 !important;
-  }
-
-
-  .location-grid {
-    display: grid !important;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 25px;
-  }
-
-
-  .location-grid article {
-    width: 100% !important;
-
-    display: block !important;
-  }
-
-
-  .location-grid iframe {
-    display: block !important;
-
-    width: 100% !important;
-
-    min-height: 350px !important;
-
-    border: 0 !important;
-
-    border-radius: 12px !important;
-  }
-
-
-  /* =====================================================
-     MOBILE
-  ===================================================== */
-
-  @media (max-width: 900px) {
-
-    .topbar {
-      min-height: 75px !important;
-    }
-
-    .brand {
-      font-size: 20px !important;
-    }
-
-    .header-right {
-      right: 3% !important;
-
-      gap: 8px !important;
-    }
-
-    .header-download {
-      gap: 7px !important;
-    }
-
-    .header-download a {
-      min-height: 44px !important;
-
-      padding: 0 14px !important;
-
-      font-size: 12px !important;
-    }
-
-    .hamburger {
-      width: 46px !important;
-      height: 46px !important;
-    }
-
-    .location-grid {
-      grid-template-columns: 1fr !important;
-    }
-
-    .gallery {
-      grid-template-columns: 1fr !important;
-    }
-  }
-
-
-  /* =====================================================
-     SMALL PHONES
-  ===================================================== */
-
-  @media (max-width: 600px) {
-
-    .topbar {
-      min-height: 70px !important;
-
-      padding: 10px 3% !important;
-    }
-
-
-    .brand {
-      font-size: 17px !important;
-
-      left: 5% !important;
-
-      transform: translateY(-50%) !important;
-    }
-
-
-    .header-right {
-      right: 3% !important;
-    }
-
-
-    .header-download a {
-      min-height: 40px !important;
-
-      padding: 0 9px !important;
-
-      font-size: 9px !important;
-    }
-
-
-    .hamburger {
-      width: 42px !important;
-
-      height: 42px !important;
-    }
-
-
-    .hamburger span {
-      width: 23px !important;
-
-      height: 3px !important;
-    }
-
-
-    .menu-dropdown {
-      right: 3% !important;
-
-      width: 245px !important;
-    }
-
-  }
-
-
-  /* =====================================================
-     VERY SMALL PHONES
-  ===================================================== */
-
-  @media (max-width: 400px) {
-
-    .brand {
-      font-size: 15px !important;
-    }
-
-
-    .header-download {
-      gap: 4px !important;
-    }
-
-
-    .header-download a {
-      padding: 0 7px !important;
-
-      font-size: 8px !important;
-    }
-
-
-    .hamburger {
-      width: 40px !important;
-
-      height: 40px !important;
-    }
-
-  }
-
-</style>
-```
+}
